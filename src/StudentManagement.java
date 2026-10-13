@@ -5,7 +5,35 @@ public class StudentManagement {
     private static final ArrayList<Student> students=new ArrayList<>();
     private static final Scanner input = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    private static void addStudent(){
+        System.out.println("--------------------------------------");
+        System.out.println("|           Add Student               |");
+        System.out.println("--------------------------------------");
+
+        System.out.print("\n\tEnter Student ID: ");
+        int id = Integer.parseInt(input.nextLine());
+
+        System.out.print("\tEnter Name: ");
+        String name = input.nextLine();
+
+        System.out.print("\tEnter Marks: ");
+        double marks = Double.parseDouble(input.nextLine());
+
+        students.add(new Student(id,name,marks));
+        System.out.println("\n\nStudent added successfully!...");
+
+        System.out.print("\n\tDo you want to add another student(Y/N): ");
+        String anotherOne = input.nextLine();
+
+        if(anotherOne.equalsIgnoreCase("Y")){
+            addStudent();
+        }else {
+           homeMenu();
+        }
+
+    }
+
+    private static void homeMenu(){
         int choice;
 
         do{
@@ -23,7 +51,7 @@ public class StudentManagement {
 
             switch (choice){
                 case 1:
-                    //addStudent();
+                    addStudent();
                     break;
                 case 2:
                     //viewStudent();
@@ -35,8 +63,13 @@ public class StudentManagement {
                     System.out.println("Good Bye...");
                     break;
                 default:
-                    System.out.println("Invalid Choice! Enter a valid choince between 1 and 4.");
+                    System.out.println("Invalid Choice! Enter a valid choice between 1 and 4.");
             }
         }while (choice!=4);
+
+    }
+
+    public static void main(String[] args) {
+        homeMenu();
     }
 }
