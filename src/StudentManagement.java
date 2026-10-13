@@ -7,6 +7,7 @@ public class StudentManagement {
 
     public static void main(String[] args) {
         int choice;
+
         do{
             System.out.println("---------------------------------------------");
             System.out.println("|             Student Management System      |");
@@ -17,15 +18,18 @@ public class StudentManagement {
             System.out.println("\n\t[03]. Search Student");
             System.out.println("\n\t[04]. Exit");
 
-            System.out.print("Choose your choice: ");
-            choice= input.nextInt();
+            System.out.print("\nChoose your choice: ");
+            choice= Integer.parseInt(input.nextLine());
 
             switch (choice){
                 case 1:
+                    //addStudent();
                     break;
                 case 2:
+                    //viewStudent();
                     break;
                 case 3:
+                    //searchStudent();
                     break;
                 case 4:
                     System.out.println("Good Bye...");
