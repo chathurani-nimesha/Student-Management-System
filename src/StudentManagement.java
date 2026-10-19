@@ -34,9 +34,6 @@ public class StudentManagement {
     }
 
     private static void viewStudent(){
-        System.out.println("--------------------------------------");
-        System.out.println("|           View Student             |");
-        System.out.println("--------------------------------------");
 
         if (students.isEmpty()){
             System.out.println("No student records available...");
@@ -52,6 +49,29 @@ public class StudentManagement {
             System.out.println("-------------------------");
             System.out.println("\n");
         }
+    }
+
+    private static void searchStudent(){
+        System.out.println("+------------------------------------------+");
+        System.out.println("|             Search student               |");
+        System.out.println("+------------------------------------------+");
+
+        if(students.isEmpty()){
+            System.out.println("No student records available...");
+            return;
+        }
+
+        System.out.print("Enter student ID to search: ");
+        int searchId = Integer.parseInt(input.nextLine());
+
+        for(Student student: students){
+            if(student.getId()==searchId){
+                System.out.println("Student Found.");
+                student.displayDetails();
+                return;
+            }
+        }
+        System.out.println("Student with ID "+searchId+" not found.");
     }
 
     private static void homeMenu(){
@@ -78,7 +98,7 @@ public class StudentManagement {
                     viewStudent();
                     break;
                 case 3:
-                    //searchStudent();
+                    searchStudent();
                     break;
                 case 4:
                     System.out.println("Good Bye...");
