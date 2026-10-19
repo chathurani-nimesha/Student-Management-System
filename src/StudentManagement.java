@@ -6,31 +6,86 @@ public class StudentManagement {
     private static final Scanner input = new Scanner(System.in);
 
     private static void addStudent(){
-        System.out.println("--------------------------------------");
-        System.out.println("|           Add Student               |");
-        System.out.println("--------------------------------------");
 
-        System.out.print("\n\tEnter Student ID: ");
-        int id = Integer.parseInt(input.nextLine());
+        while (true){
+            System.out.println("--------------------------------------");
+            System.out.println("|           Add Student               |");
+            System.out.println("--------------------------------------");
 
-        System.out.print("\tEnter Name: ");
-        String name = input.nextLine();
+            int id;
 
-        System.out.print("\tEnter Marks: ");
-        double marks = Double.parseDouble(input.nextLine());
+            while(true){
+                System.out.print("Enter Student ID: ");
 
-        students.add(new Student(id,name,marks));
-        System.out.println("\n\nStudent added successfully!...");
+                try {
+                    id = Integer.parseInt(input.nextLine().trim());
 
-        System.out.print("\n\tDo you want to add another student(Y/N): ");
-        String anotherOne = input.nextLine();
+                    if (id<=0){
+                        System.out.println("ID must be a positive number.");
+                        continue;
+                    }
 
-        if(anotherOne.equalsIgnoreCase("Y")){
-            addStudent();
-        }else {
-           homeMenu();
+                    boolean duplicate = false;
+
+                    for (Student student: students){
+                        if (student.getId()==id){
+                            duplicate=true;
+                            break;
+                        }
+                    }
+                    if (duplicate){
+                        System.out.println("Student ID already exists.");
+                        continue;
+                    }
+                    break;
+                }catch (NumberFormatException e){
+                    System.out.println("Please enter a valid integer ID.");
+                }
+            }
+            String name;
+            while (true){
+                System.out.print("Enter Student name: ");
+                name = input.nextLine().trim();
+
+                if(!name.isEmpty()){
+                    break;
+                }
+                System.out.println("\tName Cannot be empty.");
+            }
+
+            double marks;
+
+            while (true){
+                System.out.print("Enter Marks: ");
+
+                try{
+                    marks=Double.parseDouble(input.nextLine().trim());
+
+                    if (Double.isFinite(marks) && marks >=0 && marks <= 100){
+                        break;
+                    }
+                    System.out.println("Marks must be between 0 and 100.");
+                }catch (NumberFormatException e){
+                    System.out.println("Please enter valid numeric marks.");
+                }
+            }
+
+            students.add(new Student(id,name,marks));
+            System.out.println("\n\tStudent added Successfully...");
+
+            while (true){
+                System.out.print("Add another student? (Y/N)");
+                String answer=input.nextLine().trim();
+
+                if(answer.equalsIgnoreCase("Y")){
+                    break;
+                }else if(answer.equalsIgnoreCase("N")){
+                    return;
+                }else {
+                    System.out.println("Please enter Y or N.");
+                }
+            }
         }
-
     }
 
     private static void viewStudent(){
