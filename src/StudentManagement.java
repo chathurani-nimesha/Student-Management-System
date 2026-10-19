@@ -88,7 +88,14 @@ public class StudentManagement {
             System.out.println("\n\t[04]. Exit");
 
             System.out.print("\nChoose your choice: ");
-            choice= Integer.parseInt(input.nextLine());
+
+            try {
+                choice= Integer.parseInt(input.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Invalid input! Enter a number from 1 to 4.");
+                choice = 0;
+            }
+
 
             switch (choice){
                 case 1:
