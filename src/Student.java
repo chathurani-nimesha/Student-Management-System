@@ -9,6 +9,12 @@ public class Student {
         this.marks=marks;
     }
 
+    public void displayDetails(){
+        System.out.println("Student ID: "+ id);
+        System.out.println("Name      : "+ name);
+        System.out.println("Marks     : "+ marks);
+    }
+
     public int getId(){
         return id;
     }

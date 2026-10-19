@@ -33,12 +33,33 @@ public class StudentManagement {
 
     }
 
+    private static void viewStudent(){
+        System.out.println("--------------------------------------");
+        System.out.println("|           View Student             |");
+        System.out.println("--------------------------------------");
+
+        if (students.isEmpty()){
+            System.out.println("No student records available...");
+            return;
+        }
+
+        System.out.println("===================================");
+        System.out.println("|         Student Details         |");
+        System.out.println("===================================");
+
+        for (Student student:students){
+            student.displayDetails();
+            System.out.println("-------------------------");
+            System.out.println("\n");
+        }
+    }
+
     private static void homeMenu(){
         int choice;
 
         do{
             System.out.println("---------------------------------------------");
-            System.out.println("|             Student Management System      |");
+            System.out.println("|             Student Management System     |");
             System.out.println("---------------------------------------------");
 
             System.out.println("\n\t[01]. Add Student");
@@ -54,7 +75,7 @@ public class StudentManagement {
                     addStudent();
                     break;
                 case 2:
-                    //viewStudent();
+                    viewStudent();
                     break;
                 case 3:
                     //searchStudent();
